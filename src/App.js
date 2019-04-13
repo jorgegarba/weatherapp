@@ -10,7 +10,19 @@ const cities = [
   'Washington, US'];
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      city:null
+    }
+  }
+  handleLocationListClick = (city)=>{
+    this.setState({
+      city:city
+    });
+  }
   render() {
+    let city = this.state.city;
     return (
       <Container>
         <Navbar bg="dark" variant="dark">
@@ -33,10 +45,12 @@ class App extends Component {
         </Row>
         <Row>
           <Col md={5}>
-            <LocationList cities={cities}/>
+            <LocationList cities={cities} onSelectLocation={this.handleLocationListClick}/>
           </Col>
           <Col md={7}>
-            Forecast
+            <div className="details">
+              {city?city:"no se ha seleccionado ninguna ciudad"}
+            </div>
           </Col>
         </Row>
       </Container>
