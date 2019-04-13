@@ -12,7 +12,7 @@ const cities = [
 class App extends Component {
   render() {
     return (
-      <Container fluid>
+      <Container>
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="#home">Navbar</Navbar.Brand>
           <Nav className="mr-auto">
@@ -32,7 +32,12 @@ class App extends Component {
           <h5>API de cLimas y pronóstios</h5>
         </Row>
         <Row>
-          <LocationList cities={cities}/>
+          <Col md={5}>
+            <LocationList cities={cities}/>
+          </Col>
+          <Col md={7}>
+            Forecast
+          </Col>
         </Row>
       </Container>
       
