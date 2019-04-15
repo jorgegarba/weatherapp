@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LocationList from './components/LocationList';
 import {Container,Row,Col,Navbar,Nav,Form,FormControl,Button} from 'react-bootstrap';
-
+import ForecastExtended from './components/ForecastExtended';
 const cities = [
   'Arequipa, PE',
   'Puno, PE',
@@ -49,7 +49,9 @@ class App extends Component {
           </Col>
           <Col md={7}>
             <div className="details">
-              {city?city:"no se ha seleccionado ninguna ciudad"}
+              {city ? 
+                     <ForecastExtended city={city}/>:
+                    <h1>No se ha seleccionado ninguna ciudad</h1>}
             </div>
           </Col>
         </Row>
