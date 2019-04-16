@@ -21,11 +21,11 @@ class WeatherLocation extends Component{
         console.log("componentDidMount");
         this.updateState();
     }
-    componentDidUpdate(){
-        console.log("componentDidUpdate");
-    }
     componentWillUpdate(){
         console.log("UNSAFE componentWillUpdate");
+    }
+    componentDidUpdate(){
+        console.log("componentDidUpdate");
     }
 
 
