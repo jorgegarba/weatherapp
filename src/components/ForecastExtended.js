@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ForecastItem from './ForecastItem';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {transformForecastData} from './../services/transformForecastData';
 
 const days = ['Lunes', 'Martes', 'Miercoles', 'Jueves'];
@@ -13,11 +14,13 @@ const dataEjemplo = {
 class ForecastExtended extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            forecastData: null
+        };
     }
-
     getUrlWeatherForecastByCity = (city) => {
         let apiKey = "f216cdc5ffb3839b7ebdb07394220bc1";
-        let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}`;
+        let url = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&APPID=${apiKey}&units=meters`;
         return url;
     }
     componentDidMount(){
@@ -27,6 +30,9 @@ class ForecastExtended extends Component{
             return response.json();
         }).then((data)=>{
             transformForecastData(data);
+            this.setState({
+                forecastData:1
+            })
         });
     }
 
@@ -41,9 +47,11 @@ class ForecastExtended extends Component{
     }
 
     render(){
+        let {forecastData} = this.state;
+
         return (<div>
             <h2>Pronostico extendido de {this.props.city}</h2>
-            {this.renderForecastItemDays()}
+            {forecastData ? this.renderForecastItemDays() : <CircularProgress/>}
         </div>)
     }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WeatherLocation from './WeatherLocation';
 
-
 const LocationList = (props)=>{    
     let cities = props.cities;
     let onSelectLocation = props.onSelectLocation;
@@ -25,21 +24,7 @@ const LocationList = (props)=>{
 
 LocationList.propTypes  = {
     cities: PropTypes.array.isRequired,
+    onSelectLocation: PropTypes.func.isRequired,
 }
 
 export default LocationList;
-
-
-
-
-
-
-// let miFuncion = (props)=>{
-//     var a,b,c;
-//     let segundaFuncion = ()=>{
-
-//     }
-
-//     segundaFuncion();
-
-// }
