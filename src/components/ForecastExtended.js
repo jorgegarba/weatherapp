@@ -3,7 +3,6 @@ import ForecastItem from './ForecastItem';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {transformForecastData} from './../services/transformForecastData';
 
-const days = ['Lunes', 'Martes', 'Miercoles', 'Jueves'];
 const dataEjemplo = {
     temperature:10,
     humidity:11,
@@ -36,11 +35,11 @@ class ForecastExtended extends Component{
         });
     }
 
-    renderForecastItemDays(){
-        let ForecastItems = days.map((day,i)=>{
-            return <ForecastItem weekDay={day}
-                                 data={dataEjemplo}
-                                 hour={17}
+    renderForecastItemDays(forecastData){
+        let ForecastItems = forecastData.map((forecastItem,i)=>{
+            return <ForecastItem weekDay={forecastItem.weekDay}
+                                 data={forecastItem.data}
+                                 hour={forecastItem.hour}
                                  key={i}/>
         });
         return ForecastItems;
@@ -51,7 +50,7 @@ class ForecastExtended extends Component{
 
         return (<div>
             <h2>Pronostico extendido de {this.props.city}</h2>
-            {forecastData ? this.renderForecastItemDays() : <CircularProgress/>}
+            {forecastData ? this.renderForecastItemDays(forecastData) : <CircularProgress/>}
         </div>)
     }
 }
