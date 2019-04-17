@@ -1,4 +1,5 @@
 import moment from 'moment';
+import 'moment/locale/es';
 
 const transformData = (id)=>{
     let weatherState = "";
@@ -19,20 +20,17 @@ const transformData = (id)=>{
 }
 
 export const transformForecastData = (data)=>{
-  
     data = data.list.filter((item)=>{
         console.log(moment.unix(item.dt).utc().hour());
         return moment.unix(item.dt).utc().hour() === 6 ||
                moment.unix(item.dt).utc().hour() === 12 ||
                moment.unix(item.dt).utc().hour() === 18
     });
-    
     data.splice(3);
-
     let resultado = [];
     data.forEach(elemento=>{
         let objForecastItem = {
-            weekDay:moment.unix(elemento.dt).utc().day(),
+            weekDay:moment.unix(elemento.dt).utc().format('dddd'),
             hour:moment.unix(elemento.dt).utc().hour(),
             data:{
                 temperature:elemento.main.temp,
@@ -42,8 +40,7 @@ export const transformForecastData = (data)=>{
             }
         }
         resultado.push(objForecastItem);
-    })
+    });
 
-    console.log(resultado);
-
+    return resultado;
 }

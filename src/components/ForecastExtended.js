@@ -29,9 +29,9 @@ class ForecastExtended extends Component{
         fetch(url).then((response)=>{
             return response.json();
         }).then((data)=>{
-            transformForecastData(data);
+            let forecastData = transformForecastData(data);
             this.setState({
-                forecastData:1
+                forecastData:forecastData
             })
         });
     }
